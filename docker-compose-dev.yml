@@ -1,0 +1,22 @@
+# docker compose -f docker-compose-dev.yml up
+services:
+  chanchito:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports: 
+      - "3000:3000"
+    volumes:
+      - .:/home/app
+  monguito:
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=julio
+      - MONGO_INITDB_ROOT_PASSWORD=contra123
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data: 
